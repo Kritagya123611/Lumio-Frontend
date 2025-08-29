@@ -108,14 +108,20 @@ bot.start()`
           {platforms.map((platform) => (
             <div
               key={platform.id}
-              onClick={() => handlePlatformClick(platform)}
+                onClick={() => {
+                  if (platform.id !== "subspace") {
+                    handlePlatformClick(platform)
+                  }
+                }}
               className="relative p-6 rounded-xl h-90 cursor-pointer border border-zinc-800 transition-all duration-200 flex flex-col w-full
                 bg-gradient-to-b from-zinc-950 to-zinc-900 hover:border-zinc-700"
             >
               {platform.id === "subspace" && (
                 <div className="absolute inset-0 rounded-xl flex items-center justify-center z-10 pointer-events-none">
                   {/* Diagonal Banner */}
-                  <div className="bg-gradient-to-r from-zinc-800/80 to-zinc-700/80 text-white text-lg font-bold px-12 py-3 transform rotate-12 shadow-lg border border-zinc-600 rounded backdrop-blur-[1px]">
+                  <div className="bg-gradient-to-r from-zinc-800/80 to-zinc-700/80 text-white 
+                                  text-2xl font-bold px-16 py-5 transform rotate-12 
+                                  shadow-xl border border-zinc-600 rounded-lg backdrop-blur-[2px]">
                     COMING SOON
                   </div>
                 </div>
@@ -156,16 +162,7 @@ bot.start()`
             </div>
           ))}
         </div>
-
-        {/* More Platforms Coming Soon - pinned bottom */}
-        <div className="flex flex-col items-center justify-center mt-8 opacity-60">
-          <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-zinc-700 mb-2">
-            <Settings className="w-6 h-6 text-zinc-500" />
-          </div>
-          <p className="text-sm text-zinc-500">More Platforms Coming Soon</p>
-        </div>
       </div>
-
       {/* Popup Modal */}
       <AnimatePresence>
         {showPopup && selectedPlatform && (
